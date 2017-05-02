@@ -12,12 +12,12 @@ This is code for the paper
 ## Usage
 All results from the paper, and more are in the `data` folder. For example `data/cnn/cifar10/eve.pkl` has the results for using Eve to optimize a CNN on CIFAR10. The pickle files contain the loss history and cross-validation parameters. Additionally, all results are visualized in a jupyter notebook `src/compare_opts.ipynb`. The fixed models used in the paper are in `src/models.py`. The models are implemented in Keras. The experiments can be run using `src/runexp.py`. Run this script with `--help` as an argument to see the interface. The code for the character language model is in `src/charnn.py`. It is implemented in Theano. A keras implementation of our algorithm Eve is in `src/eve.py`. A theano implementation is also available in `src/theano_utils.py`.
 
-## Scripts(此处由本人添加,代码运行需要python3的支持，同时注意--opt-args参数的设置，因为时gridSearch，故value是list，同时命令行传参的key是变量名称，故意暴露了自己没有使用过argParser，囧)
+## Scripts
 
 python3 runexp.py --optimizer=adam --opt-args='{"lrs":[0.009,0.092],"decays":[0.8,0.9]}' --model=logistic --dataset=mnist --batch-size=120 --epochs=20000 --save-path=/Users/zhpmatrix/Documents/code/sgd-feedback-diy/src/lr.pkl
 
 
-ps: 运行脚本的编写，刚开始自己不知道的前提下，直接通过在代码中按照自己的想法来改，没有报错，然后注释掉自己的代码，将修改的地方移到脚本，测试OK！！！
+ps: 运行脚本的编写，刚开始自己不知道的前提下，直接通过在代码中按照自己的想法来改，没有报错，然后注释掉自己的代码，将修改的地方移到脚本，测试OK。代码运行需要python3的支持，同时注意--opt-args参数的设置，因为使用gridSearch，故value是list，同时命令行传递的key是变量名称，故意暴露了自己没有使用过argParser，囧。
 
 ## Citation
 If you find this code useful, please cite

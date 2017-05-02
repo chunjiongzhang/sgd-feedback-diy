@@ -19,7 +19,12 @@ from babi_sitter import *
 from timelogger import TimeLogger
 
 def pre_process_image(args):
-    (X_train, y_train), _ = DATASET_INFO[args.dataset]["loader"]()
+    #(X_train, y_train), _ = DATASET_INFO[args.dataset]["loader"]()
+    training_data,validation_data,test_data = DATASET_INFO[args.dataset]["loader"]()
+   
+    X_train = training_data[0] 
+    y_train = training_data[1]
+
     if args.n_samples is not None:
         p = np.random.permutation(X_train.shape[0])
         X_train, y_train = X_train[p][:args.n_samples], y_train[p][:args.n_samples]
@@ -128,7 +133,7 @@ for opt in grid_opt:
         best_final_loss = history.history["loss"][-1]
         best_loss_history = history.history["loss"]
         best_opt_config = opt.get_config()
-        best_decay = opt.decay.get_value()
+        #best_decay = opt.decay.get_value()
         best_run_epoch_times = time_logger.epoch_times
         best_run_total_time = total_time
         if args.optimizer == "eve":
@@ -138,7 +143,7 @@ save_data = {
     "best_loss_history": best_loss_history,
     "param_grid": grid_opt.grid,
     "best_opt_config": best_opt_config,
-    "best_decay": best_decay,
+    #"best_decay": best_decay,
     "cmd_args": args,
     "best_run_epoch_times": best_run_epoch_times,
     "best_run_total_time": best_run_total_time,

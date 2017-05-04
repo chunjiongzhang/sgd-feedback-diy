@@ -108,6 +108,8 @@ else:
     X_train, y_train = DATASET_INFO[args.dataset]["preprocess"](args)
 
 best_final_loss = np.inf
+
+# GridSearch Here 
 for opt in grid_opt:
     if args.model == 'bigru':
         model = MODEL_FACTORIES[args.model](args)

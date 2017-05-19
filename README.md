@@ -14,10 +14,29 @@ All results from the paper, and more are in the `data` folder. For example `data
 
 ## Scripts
 
-python3 runexp.py --optimizer=adam --opt-args='{"lrs":[0.009,0.092],"decays":[0.8,0.9]}' --model=logistic --dataset=mnist --batch-size=120 --epochs=20000 --save-path=/Users/zhpmatrix/Documents/code/sgd-feedback-diy/src/lr.pkl
+common models or datasets:
+
+python3 runexp.py --optimizer=adam --opt-args='{"lrs":[0.009,0.092],"decays":[0.8,0.9]}' --model=logistic --dataset=mnist --batch-size=120 --epochs=20000 --save-path=PATH_PKL/filename.pkl
+
+--------------------------------------------------------------------
+adam,adamax,adagrad,adadelta,rmsprop(without momentums):
 
 python3 runexp.py --optimizer=adam --opt-args='{"lrs":[0.01,0.001,0.0001],"decays":[0,0.01,0.001,0.0001]}' --model=cnn --dataset=cifar10 --batch-size=120 --epochs=20000 --save-path=pkls/cnn_cifar10.pkl
 
+----------------------------------------------------------------------
+sgdnesterov,sgdmomentum(with momentums):
+
+python3 runexp.py --optimizer=sgdnesterov --opt-args='{"lrs":[0.01,0.001,0.0001],"momentums":[0.9],"decays":[0,0.01,0.001,0.0001]}' --model=cnn --dataset=cifar10 --batch-size=120 --epochs=20000 --save-path=pkls/cnn_cifar10.pkl
+
+-----------------------------------------------------------------
+
+How to run Eve?
+
+there is a mistake here:
+
+AttributeError: 'float' object has no attribute 'name'
+
+-----------------------------------------------------------------
 ps: 运行脚本的编写，刚开始自己不知道的前提下，直接通过在代码中按照自己的想法来改，没有报错，然后注释掉自己的代码，将修改的地方移到脚本，测试OK。代码运行需要python3的支持，同时注意--opt-args参数的设置，因为使用gridSearch，故value是list，同时命令行传递的key是变量名称，故意暴露了自己没有使用过argParser，囧。
 
 ## Citation
